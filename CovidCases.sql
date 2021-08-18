@@ -1,3 +1,4 @@
+--s is the database, cd is the covidDeaths table and cv is the covidVaccinations table.
 select * from s..cd
 order by 3,4;
 
