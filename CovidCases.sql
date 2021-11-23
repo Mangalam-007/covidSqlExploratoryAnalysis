@@ -28,6 +28,13 @@ where location = 'india'
 order by 1,2;
 --till 13/08/2021 2.32% population of India have been infected with covid19, i.e. 3,21,17,826 cases have been reported.
 
+--7 day moving average of Covid Deaths
+SELECT location,date,new_cases,
+AVG(CONVERT(INT,new_cases)) OVER (PARTITION BY location ORDER BY location,date ROWS BETWEEN 7 PRECEDING AND 1 PRECEDING) 
+as [7-Day Moving Average]
+FROM cd
+WHERE location='INDIA';
+
 --Looking at Countries with Highest Infection Rate compared to Population
 select location, max(total_cases), max(total_cases/population)*100 as HighestInfectionRate 
 from s..cd 
